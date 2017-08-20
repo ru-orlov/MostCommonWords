@@ -9,4 +9,12 @@
         <item>Polish</item>
         <item>Russian</item>
     </string-array>
+    <string-array name="table_list">
+        <item>language_eng</item>
+        <item>language_de</item>
+        <item>language_fr</item>
+        <item>language_it</item>
+        <item>language_pl</item>
+        <item>language_ru</item>
+    </string-array>
 </resources>

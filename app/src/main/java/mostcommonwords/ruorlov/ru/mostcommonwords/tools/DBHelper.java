@@ -2,6 +2,7 @@ package mostcommonwords.ruorlov.ru.mostcommonwords.tools;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -9,6 +10,9 @@ import android.util.Log;
 import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
+
+    SQLiteDatabase db;
+
     private static final String DATABASE_NAME = "mostcommonwords.db";
 
     private static final int DATABASE_VERSION = 1;
@@ -139,7 +143,6 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion,
                           int newVersion) {
@@ -154,5 +157,15 @@ public class DBHelper extends SQLiteOpenHelper {
         database.execSQL("DROP TABLE IF EXISTS lang_fr");
         database.execSQL("DROP TABLE IF EXISTS lang_it");
         onCreate(database);
+    }
+
+    public Cursor getPairLanguage(String first_lang, String second_lang) {
+        return db.rawQuery("select t1._id AS _id, " +
+                "t1.word AS firstword, " +
+                "t2.word AS secondword "+
+                "from " + first_lang +" t1, "+
+                second_lang+" t2 " +
+                "WHERE t1.word_id = t2.word_id" +
+                " GROUP BY 1 ORDER by 1", null);
     }
 }

@@ -8,6 +8,7 @@
     <TextView
         android:id="@+id/left_lang_word"
         android:layout_width="0dp"
+        android:textSize="30dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="TextView" />
@@ -16,6 +17,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textSize="30dp"
         android:text="TextView" />
 
 </LinearLayout>

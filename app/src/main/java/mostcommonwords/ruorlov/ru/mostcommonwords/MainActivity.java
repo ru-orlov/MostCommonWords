@@ -17,6 +17,13 @@ import java.util.HashMap;
 import mostcommonwords.ruorlov.ru.mostcommonwords.tools.DBHelper;
 import mostcommonwords.ruorlov.ru.mostcommonwords.tools.InstallService;
 
+import static mostcommonwords.ruorlov.ru.mostcommonwords.tools.ConstantsApp.DELANG;
+import static mostcommonwords.ruorlov.ru.mostcommonwords.tools.ConstantsApp.ENGLANG;
+import static mostcommonwords.ruorlov.ru.mostcommonwords.tools.ConstantsApp.FIRSTWORD;
+import static mostcommonwords.ruorlov.ru.mostcommonwords.tools.ConstantsApp.LEFTLANG;
+import static mostcommonwords.ruorlov.ru.mostcommonwords.tools.ConstantsApp.RIGHTLANG;
+import static mostcommonwords.ruorlov.ru.mostcommonwords.tools.ConstantsApp.SECONDWORD;
+
 public class MainActivity extends AppCompatActivity {
     DBHelper dbhelper;
     ListView leftListView;
@@ -28,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         startService(new Intent(MainActivity.this, InstallService.class));
         setContentView(R.layout.activity_main);
 
-        languages.put("leftlang", "language_eng");
-        languages.put("rightlang", "language_de");
+        languages.put(LEFTLANG, ENGLANG);
+        languages.put(RIGHTLANG, DELANG);
 
         final Spinner leftSpinner = (Spinner)findViewById(R.id.left_lang);
         final Spinner rightSpinner = (Spinner)findViewById(R.id.rihgt_lang);
@@ -47,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String[] lang_labels = parent.getResources().getStringArray(R.array.lang_list);
                 String[] lang_tables = parent.getResources().getStringArray(R.array.table_list);
-                if (!languages.get("leftlang").equals(lang_labels[position])){
-                    languages.put("leftlang", lang_tables[position]);
+                if (!languages.get(LEFTLANG).equals(lang_labels[position])){
+                    languages.put(LEFTLANG, lang_tables[position]);
                     fillListsOnStart();
                 }
             }
@@ -64,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String[] lang_labels = parent.getResources().getStringArray(R.array.lang_list);
                 String[] lang_tables = parent.getResources().getStringArray(R.array.table_list);
-                if (!languages.get("rightlang").equals(lang_labels[position])){
-                    languages.put("rightlang", lang_tables[position]);
+                if (!languages.get(RIGHTLANG).equals(lang_labels[position])){
+                    languages.put(RIGHTLANG, lang_tables[position]);
                     fillListsOnStart();
                 }
             }
@@ -83,8 +90,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void fillListsOnStart(){
         leftListView = (ListView) findViewById(R.id.wordsList);
-        Cursor leftCursor = getPairLanguage(languages.get("leftlang"), languages.get("rightlang"));
-        String[] from = new String[] {"firstword", "secondword" };
+        Cursor leftCursor = getPairLanguage(languages.get(LEFTLANG), languages.get(RIGHTLANG));
+        String[] from = new String[] {FIRSTWORD, SECONDWORD };
         int[] to = new int[] { R.id.left_lang_word, R.id.right_lang_word};
 
         SimpleCursorAdapter left_words = new SimpleCursorAdapter(this, R.layout.lang_row, leftCursor, from, to);
@@ -92,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //TODO: it can be safety
     public Cursor getPairLanguage(String first_lang, String second_lang) {
         dbhelper = new DBHelper(this.getBaseContext());
         SQLiteDatabase db = dbhelper.getWritableDatabase();

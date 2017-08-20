@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
 
-    SQLiteDatabase db;
-
     private static final String DATABASE_NAME = "mostcommonwords.db";
 
     private static final int DATABASE_VERSION = 1;
@@ -160,7 +158,8 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getPairLanguage(String first_lang, String second_lang) {
-        return db.rawQuery("select t1._id AS _id, " +
+        SQLiteDatabase database = getWritableDatabase();
+        return database.rawQuery("select t1._id AS _id, " +
                 "t1.word AS firstword, " +
                 "t2.word AS secondword "+
                 "from " + first_lang +" t1, "+

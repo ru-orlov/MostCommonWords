@@ -14,6 +14,7 @@ import java.util.HashMap;
 import mostcommonwords.ruorlov.ru.mostcommonwords.tools.DBHelper;
 import mostcommonwords.ruorlov.ru.mostcommonwords.tools.InstallService;
 import mostcommonwords.ruorlov.ru.mostcommonwords.tools.LeftSpinnerSelectedListener;
+import mostcommonwords.ruorlov.ru.mostcommonwords.tools.RightSpinnerSelectedListener;
 
 import static mostcommonwords.ruorlov.ru.mostcommonwords.tools.ConstantsApp.DELANG;
 import static mostcommonwords.ruorlov.ru.mostcommonwords.tools.ConstantsApp.ENGLANG;
@@ -49,56 +50,19 @@ public class MainActivity extends AppCompatActivity {
         leftSpinner.setAdapter(adapterLeft);
         rightSpinner.setAdapter(adapterRight);
         leftSpinner.setOnItemSelectedListener(new LeftSpinnerSelectedListener(this));
-//        rightSpinner.setOnItemSelectedListener(new SpinnerSelectedListener("right"));
-        //TODO: move this shit into SpinnerSelectedListener class
-//        leftSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String[] lang_labels = parent.getResources().getStringArray(R.array.lang_list);
-//                String[] lang_tables = parent.getResources().getStringArray(R.array.table_list);
-//                if (!languages.get(LEFTLANG).equals(lang_labels[position])){
-//                    languages.put(LEFTLANG, lang_tables[position]);
-//                    fillListsOnStart();
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-        //TODO: move this shit into SpinnerSelectedListener class
-//        rightSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String[] lang_labels = parent.getResources().getStringArray(R.array.lang_list);
-//                String[] lang_tables = parent.getResources().getStringArray(R.array.table_list);
-//                if (!languages.get(RIGHTLANG).equals(lang_labels[position])){
-//                    languages.put(RIGHTLANG, lang_tables[position]);
-//                    fillListsOnStart();
-//                }
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-
-
+        rightSpinner.setOnItemSelectedListener(new RightSpinnerSelectedListener(this));
         rightSpinner.setSelection(1);
         fillListsOnStart();
     }
 
     public void fillListsOnStart(){
         leftListView = (ListView) findViewById(R.id.wordsList);
+        dbhelper = new DBHelper(this.getBaseContext());
         Cursor leftCursor = dbhelper.getPairLanguage(languages.get(LEFTLANG), languages.get(RIGHTLANG));
         String[] from = new String[] {FIRSTWORD, SECONDWORD };
         int[] to = new int[] { R.id.left_lang_word, R.id.right_lang_word};
-
         SimpleCursorAdapter left_words = new SimpleCursorAdapter(this, R.layout.lang_row, leftCursor, from, to, 0);
         leftListView.setAdapter(left_words);
-
     }
 
 }

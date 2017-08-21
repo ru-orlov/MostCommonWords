@@ -1,0 +1,9 @@
+# MostCommonWords
+
+The most common words for independent using the languages.
+
+Studies that estimate and ran the most common words in English examine texts written in English. Perhaps the most comprehensive such analysis is one that was conducted against the Oxford English Corpus (OEC), a very large collection of texts from around the world that are written in the English language. A text corpus is a large collection of written works that are organised in a way that makes such analysis easier.
+In total, the texts in the Oxford English Corpus contain more than 2 billion words. The OEC includes a wide variety of writing samples, such as literary works, novels, academic journals, newspapers, magazines, Hansard's Parliamentary Debates, blogs, chat logs, and emails.
+Another English corpus that has been used to study word frequency is the Brown Corpus, which was compiled by researchers at Brown University in the 1960s. The researchers published their analysis of the Brown Corpus in 1967. Their findings were similar, but not identical, to the findings of the OEC analysis.
+According to The Reading Teacher's Book of Lists, the first 25 words in the OEC make up about one-third of all printed material in English, and the first 100 words make up about half of all written English. According to a study cited by Robert McCrum in The Story of English, all of the first hundred of the most common words in English are of Anglo-Saxon origin.
+Some lists of common words distinguish between word forms, while others rank all forms of a word as a single lexeme (the form of the word as it would appear in a dictionary). For example, the lexeme be (as in to be) comprises all its conjugations (is, was, are, were, etc.), and contractions of those conjugations. Note also that these top 100 lemmas listed below account for 50% of all the words in the Oxford English Corpus.
